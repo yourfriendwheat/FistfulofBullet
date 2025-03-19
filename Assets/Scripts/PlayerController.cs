@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    public GameObject player;
+    [SerializeField] private GameObject player;
     private bool selected = false;
     private Vector3 mousePos;
     private Vector3 center;
@@ -16,11 +16,7 @@ public class PlayerController : MonoBehaviour {
         // Find radius of the arm
         center = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         radius = Mathf.Sqrt(Mathf.Pow(center.x - transform.position.x, 2) + Mathf.Pow(center.y - transform.position.y, 2));
-        transform.localEulerAngles = new Vector3(0, 0, angle);
-        // Make sure that the radius is consistent
-        float xpos = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
-        float ypos = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
-        transform.localPosition = new Vector3(center.x + xpos, center.y + ypos, 0);
+        calcPosition();
     }
 
     // Update is called once per frame
@@ -36,12 +32,7 @@ public class PlayerController : MonoBehaviour {
             // Restrict the angle to 60 degress up and down
             if (angle < -60.0f) angle = -60.0f;
             if (angle > 60.0f) angle = 60.0f;
-            transform.localEulerAngles = new Vector3(0, 0, angle);
-
-            // Make sure that the radius is consistent
-            float xpos = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
-            float ypos = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
-            transform.localPosition = new Vector3(center.x + xpos, center.y + ypos, 0);
+            calcPosition();
         }
     }
 
@@ -52,6 +43,15 @@ public class PlayerController : MonoBehaviour {
 
     private void OnMouseUp() {
         selected = false;
+    }
+
+    private void calcPosition() {
+        // Set Angle
+        transform.localEulerAngles = new Vector3(0, 0, angle);
+        // Make sure that the radius is consistent
+        float xpos = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+        float ypos = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
+        transform.localPosition = new Vector3(center.x + xpos, center.y + ypos, 0);
     }
 
 }
