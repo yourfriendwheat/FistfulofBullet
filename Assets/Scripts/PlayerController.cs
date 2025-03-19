@@ -12,19 +12,21 @@ public class PlayerController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        radius = Mathf.Abs(player.transform.position.x - transform.position.x);
+        // Find radius of the arm
+        radius = Mathf.Sqrt(Mathf.Pow(player.transform.position.x - transform.position.x, 2) + Mathf.Pow(player.transform.position.y - transform.position.y, 2));
     }
 
     // Update is called once per frame
     void Update() {
         if (selected) {
 
+            //Get the angle btw the mouse and the player
             mousePos = Input.mousePosition;
-            // mousePos.z = player.transform.position.z - Camera.main.transform.position.z;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             mousePos = mousePos - player.transform.position;
             angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-            if (angle < 0.0f) angle += 360.0f;
+            if (angle < -60.0f) angle = -60.0f;
+            if (angle > 60.0f) angle = 60.0f;
             transform.localEulerAngles = new Vector3(0, 0, angle);
             float xpos = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
             float ypos = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
