@@ -13,6 +13,8 @@ public class Projection : MonoBehaviour {
     [SerializeField] private LineRenderer line;
     [SerializeField] private int maxIterations;
     [SerializeField] private LayerMask stopLayers;
+    
+    private Dictionary<Transform, Transform> spawnedObjects = new Dictionary<Transform, Transform>();
 
     // Start is called before the first frame update
     void Start() {
@@ -23,7 +25,10 @@ public class Projection : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        foreach(var item in spawnedObjects){
+            item.Value.position = item.Key.position;
+            item.Value.rotation = item.Key.rotation;
+        }
     }
 
     void CreatePhysicsScene() {
@@ -35,6 +40,9 @@ public class Projection : MonoBehaviour {
             var ghostObj = Instantiate(item.gameObject, item.position, item.rotation);
             ghostObj.GetComponent<Renderer>().enabled = false;
             SceneManager.MoveGameObjectToScene(ghostObj, simulationScene);
+            if(!ghostObj.isStatic){
+                spawnedObjects.Add(item.gameObject.transform, ghostObj.transform);
+            }
         }
 
     }
