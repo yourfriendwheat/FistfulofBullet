@@ -5,8 +5,10 @@ using UnityEngine;
 public class ObjectController : MonoBehaviour {
 
     private Vector3 offset;
+    private Vector3 extents;
     private Transform dragging = null;
     [SerializeField] private LayerMask moveableLayers;
+    [SerializeField] private GameObject dragBounds;
 
     // Update is called once per frame
     void Update() {
@@ -19,7 +21,8 @@ public class ObjectController : MonoBehaviour {
             if (hit) {
                 dragging = hit.transform;
 
-                offset = hit.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                offset = dragging.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                extents = dragging.GetComponent<SpriteRenderer>().sprite.bounds.extents;
             }
         }
         // If left click has been released then set dragging to null again
@@ -29,7 +32,19 @@ public class ObjectController : MonoBehaviour {
 
         // Move object that is being dragged
         if (dragging != null) {
-            dragging.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+            Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+
+            Bounds bounds = dragBounds.GetComponent<BoxCollider2D>().bounds;
+
+            // Find corners of bound box
+            Vector3 topRight = new Vector3(bounds.center.x + bounds.extents.x, bounds.center.y + bounds.extents.y, dragBounds.transform.position.z);
+            Vector3 bottomLeft = new Vector3(bounds.center.x - bounds.extents.x, bounds.center.y - bounds.extents.y, dragBounds.transform.position.z);
+            
+            // Set the mins and max of the positions
+            position.x = Mathf.Clamp(position.x, bottomLeft.x + extents.x, topRight.x - extents.x);
+            position.y = Mathf.Clamp(position.y, bottomLeft.y + extents.y, topRight.y - extents.y);
+
+            dragging.position = position;
         }
     }
 }
