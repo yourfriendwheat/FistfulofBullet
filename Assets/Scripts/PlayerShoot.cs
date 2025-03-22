@@ -12,6 +12,9 @@ public class PlayerShoot : MonoBehaviour
     
     [Header("Bullet Settings")]
     [SerializeField] private float bulletSpeed;
+    
+    [Header("Projection Settings")]
+    [SerializeField] private Projection projection;
 
      
     // Update is called once per frame
@@ -20,6 +23,8 @@ public class PlayerShoot : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space)){
             Shoot();
         }
+
+        projection.SimulateTrajectory(bulletSprite, spawnPoint, spawnPoint.right * bulletSpeed);
     }
 
     void Shoot(){

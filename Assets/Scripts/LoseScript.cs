@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class LoseScript : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
+        print("Triggered");
         Destroy(other.gameObject);
-        
-
     }
 }
