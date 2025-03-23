@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ObjectController : MonoBehaviour {
 
     private Vector3 offset;
@@ -39,12 +40,16 @@ public class ObjectController : MonoBehaviour {
             // Find corners of bound box
             Vector3 topRight = new Vector3(bounds.center.x + bounds.extents.x, bounds.center.y + bounds.extents.y, dragBounds.transform.position.z);
             Vector3 bottomLeft = new Vector3(bounds.center.x - bounds.extents.x, bounds.center.y - bounds.extents.y, dragBounds.transform.position.z);
-            
+
             // Set the mins and max of the positions
             position.x = Mathf.Clamp(position.x, bottomLeft.x + extents.x, topRight.x - extents.x);
             position.y = Mathf.Clamp(position.y, bottomLeft.y + extents.y, topRight.y - extents.y);
 
             dragging.position = position;
+        }
+        // Disables player input once bullet has been fired
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            GetComponent<ObjectController>().enabled = false;
         }
     }
 }

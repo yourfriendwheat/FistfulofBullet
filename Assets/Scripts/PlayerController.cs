@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
         // Find radius of the arm
         center = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         radius = Mathf.Sqrt(Mathf.Pow(center.x - transform.position.x, 2) + Mathf.Pow(center.y - transform.position.y, 2));
+        GetComponent<LineRenderer>().enabled = false;
         calcPosition();
     }
 
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour {
 
     // Keep track on if the Arm is selected or not
     private void OnMouseDown() {
+        GetComponent<LineRenderer>().enabled = true;
         selected = true;
     }
 
