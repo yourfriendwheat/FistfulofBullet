@@ -41,3 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: 1Sky
+    uniqueID: 998564131
+    locked: 0
+  - name: 2Clouds
+    uniqueID: 3197796237
+    locked: 0
+  - name: 3UpperMountain
+    uniqueID: 516103729
+    locked: 0
+  - name: 4LowerMountain
+    uniqueID: 1146779635
+    locked: 0
+  - name: 5Grass
+    uniqueID: 4164740683
+    locked: 0
+  - name: 6Plant
+    uniqueID: 2530759173
+    locked: 0
