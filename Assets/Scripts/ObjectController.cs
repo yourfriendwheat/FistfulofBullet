@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 public class ObjectController : MonoBehaviour {
@@ -21,9 +22,14 @@ public class ObjectController : MonoBehaviour {
             // If object hit, set dragging var to that object and get the object
             if (hit) {
                 dragging = hit.transform;
-
+                Vector3 scale = dragging.localScale;
                 offset = dragging.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                extents = dragging.GetComponent<SpriteRenderer>().sprite.bounds.extents;
+                Vector3 unscaledExtents = dragging.GetComponent<SpriteRenderer>().sprite.bounds.extents;
+                extents = new Vector3(
+                    unscaledExtents.x * scale.x,
+                    unscaledExtents.y * scale.y,
+                    unscaledExtents.z * scale.z
+                );
             }
         }
         // If left click has been released then set dragging to null again

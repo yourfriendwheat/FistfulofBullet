@@ -456,7 +456,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.3595676, y: 0.6287267}
+  m_Offset: {x: 2.3969247, y: 0.6287267}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -467,7 +467,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.8018074, y: 2.2574525}
+  m_Size: {x: 3.251638, y: 2.2574525}
   m_EdgeRadius: 0
 --- !u!4 &417540289
 Transform:
@@ -1282,7 +1282,7 @@ Transform:
   m_GameObject: {fileID: 1145219150}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.35, y: 0, z: 0}
+  m_LocalPosition: {x: 2.3, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1881,8 +1881,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.07541844
-        value: 0.03773386
+        time: 0.06395528
+        value: 0.122145474
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1894,16 +1894,16 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 0.78431374, g: 0.5298594, b: 0.5298594, a: 1}
-      key2: {r: 0.7830189, g: 0, b: 0, a: 0}
+      key0: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+      key1: {r: 0.509434, g: 0.37246352, b: 0.37246352, a: 1}
+      key2: {r: 0.509434, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 8096
+      ctime1: 21588
       ctime2: 65535
       ctime3: 0
       ctime4: 0
