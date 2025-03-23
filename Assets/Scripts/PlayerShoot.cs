@@ -39,8 +39,8 @@ public class PlayerShoot : MonoBehaviour {
     }
     //Disables player controls when shot is fired
     void disableControls() {
-        // GetComponent<PlayerController>().enabled = false;
-        // GetComponent<PlayerShoot>().enabled = false;
-        // GetComponent<LineRenderer>().enabled = false;
+        GetComponent<PlayerController>().enabled = false;
+        GetComponent<PlayerShoot>().enabled = false;
+        GetComponent<LineRenderer>().enabled = false;
     }
 }
