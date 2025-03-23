@@ -55,7 +55,7 @@ public class ObjectController : MonoBehaviour {
         }
         // Disables player input once bullet has been fired
         if (Input.GetKeyDown(KeyCode.Space)) {
-            GetComponent<ObjectController>().enabled = false;
+            // GetComponent<ObjectController>().enabled = false;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.PlayerLoop;
 
 public class PlayerShoot : MonoBehaviour {
 
@@ -32,13 +33,14 @@ public class PlayerShoot : MonoBehaviour {
 
     // Shoots bulllet
     void Shoot() {
-        GameObject bullet = Instantiate(bulletSprite, spawnPoint.position, Quaternion.identity);
+        GameObject bullet = GetComponent<Bullet>().Init(bulletSprite, spawnPoint.position, false);
         bullet.GetComponent<Rigidbody2D>().AddForce(spawnPoint.right * bulletSpeed, ForceMode2D.Impulse);
+        
     }
     //Disables player controls when shot is fired
     void disableControls() {
-        GetComponent<PlayerController>().enabled = false;
-        GetComponent<PlayerShoot>().enabled = false;
-        GetComponent<LineRenderer>().enabled = false;
+        // GetComponent<PlayerController>().enabled = false;
+        // GetComponent<PlayerShoot>().enabled = false;
+        // GetComponent<LineRenderer>().enabled = false;
     }
 }

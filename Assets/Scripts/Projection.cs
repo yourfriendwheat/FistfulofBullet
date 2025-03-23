@@ -13,6 +13,7 @@ public class Projection : MonoBehaviour {
     [SerializeField] private LineRenderer line;
     [SerializeField] private int maxIterations;
     [SerializeField] private LayerMask stopLayers;
+    [SerializeField] private LayerMask simLayer;
 
     private Dictionary<Transform, Transform> spawnedObjects = new Dictionary<Transform, Transform>();
 
@@ -51,9 +52,10 @@ public class Projection : MonoBehaviour {
     // Perform bullet siulation
     public void SimulateTrajectory(GameObject bulletPrefab, Transform spawn, Vector3 velocity) {
         // Create ghost bullet
-        var ghostObj = Instantiate(bulletPrefab, spawn.position, Quaternion.identity);
+        GameObject ghostObj = GetComponent<Bullet>().Init(bulletPrefab, spawn.position, true);
         SceneManager.MoveGameObjectToScene(ghostObj.gameObject, simulationScene);
         ghostObj.GetComponent<Rigidbody2D>().AddForce(velocity, ForceMode2D.Impulse);
+        ghostObj.layer = 8;
 
         line.positionCount = maxIterations;
 
