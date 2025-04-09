@@ -12,7 +12,10 @@ public class Bullet : MonoBehaviour {
     }
     // Start is called before the first frame update
     void OnCollisionEnter2D(Collision2D collision) {
-        if (gameObject.layer != 8) {GetComponent<AudioSource>().Play();}
+        if (gameObject.layer != 8) {
+            GetComponent<AudioSource>().Play();
+            ScoreManager.instance.AddScore();
+        }
         
         
     }
